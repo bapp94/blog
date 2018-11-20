@@ -1,0 +1,49 @@
+{% extends "::layout.html.twig" %}
+
+{% block title %}
+  Mon Blog de musique - {{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<header>
+		<div class="nav">
+                <nav class="nav-main">
+                    <ul class="ul-nav-main">
+                    	<li><a class="cta" href ="{{ path('blog_blog_homepage') }}"> Home</a>
+                    	</li>
+                        <li><a class="cta" href="{{ path('blog_blog_register') }}">register</a>
+                        </li>
+                        <li><a class="cta" href="{{ path('blog_blog_login') }}">Login</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="header-logo">
+                <h1 class="main-title"> Mon blog Music </h1>
+                {% block head_p  %}
+                {% endblock  %}
+            </div>
+            
+        </header>
+       	<main> 
+  {% block page_title %}
+  	
+  {% endblock %}
+
+ 
+
+  {# On définit un nouveau bloc, que les vues du bundle pourront remplir #}
+  {% block troiswaplatform_body %}
+  {% endblock %}
+</main>
+	<footer class="footer-main">
+		<div class="div-nav-footer">
+			<nav class="nav-footer" >
+				<ul class="ul-nav-footer">
+					<li><a class="cta" href="#">CGU</a></li>
+					<li><a class="cta" href="#">Home</a></li>
+					<li><a class="cta" href="#">Login</a></li>
+				</ul>
+			</nav>
+		</div>
+	</footer>
+{% endblock %}

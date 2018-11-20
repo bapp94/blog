@@ -1,0 +1,26 @@
+{% extends "Blog\BlogBundle::layout.html.twig" %}
+
+{% block page_title %}
+<div class="div-article-title" >
+	<h2 class="article-title">Connectez vous à votre espace perso</h2>
+</div>
+
+<form class="generic-form form-pad" id="login-form" action="login.php" method="POST">
+	<fieldset>
+		<legend>Login</legend>
+		<ul>
+			<li>
+				<label>Email</label>
+				<input type="text" name="email" />
+		    </li>
+		    <li>
+		  	  <label>Password</label>
+				<input type="password" name="password" />
+			</li>
+			<li>
+				<input type="submit" value="envoyer" />
+			</li>
+		</ul>
+		</fieldset>
+</form>
+{% endblock %}

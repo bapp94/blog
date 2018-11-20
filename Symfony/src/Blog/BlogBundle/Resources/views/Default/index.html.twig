@@ -1,0 +1,49 @@
+{% extends "Blog\BlogBundle::layout.html.twig" %}
+
+
+{% block title %}
+    {{ parent() }}
+{% endblock %}
+{% block head_p  %}
+<p class ="p-header"> Le Blog de toute les musiques </p>
+{% endblock  %}
+
+{% block page_title %}
+  	<div class="div-article-title " > 
+  		<h2 class="article-title"> Les derniers Articles</h2>
+  	</div>
+  	<section class="news container">
+  		<article class="item-news">
+  			<h3 class="title-item-news">un article</h3>
+  			<a href="#"><img src="{{ asset('img/1.jpg') }}"></a>
+  			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+  			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat</p>
+  			<p>ud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+  			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat</p>
+  			
+  		</article>
+  	
+  		<article class="item-news">
+  			<h3 class="title-item-news">un article</h3>
+  			<a href="#"><img src="{{ asset('img/3.jpg') }}"></a>
+  			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+  			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+  			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  			consequat. Duis aute t</p>
+  			<p>ud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+  			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+  			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat</p>
+  		
+  	</section>
+  {% endblock %}
+
+{% block troiswaplatform_body %}
+
+
+    
+
+{% endblock %}

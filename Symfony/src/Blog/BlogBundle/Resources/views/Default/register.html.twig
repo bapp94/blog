@@ -1,0 +1,39 @@
+{% extends "Blog\BlogBundle::layout.html.twig" %}
+
+{% block page_title %}
+
+<div class="div-article-title">
+	<h2 class="article-title"> Formulaires d'enregistrements
+</h2>
+</div>
+
+
+<form class="generic-form form-pad" id="register-form" action="register.php" method="POST">
+	<fieldset>
+	<legend><i class="fa fa-sticky-note-o"></i> Enregistrement</legend>
+		<ul>
+			<li>
+				<label>Nom</label>
+			    <input type="text" name="LastName"/>
+		    </li>
+		    <li>
+			    <label>Prénom</label>
+			    <input type="text" name="FirstName"/>
+		    </li>
+		    <li>
+			    <label>Email</label>
+			    <input type="text" name="Email"/>
+		    </li>
+		    <li>
+			    <label>Password</label>
+			    <input type="Password" name="Password"/>
+		    </li>
+		    <li>
+
+		    	<input class="button button-primary" type="submit" value="envoyer"/>
+		    </li>
+		</ul>
+	</fieldset>
+</form>
+{% endblock %}
+

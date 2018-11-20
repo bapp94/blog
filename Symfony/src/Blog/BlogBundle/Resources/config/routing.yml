@@ -1,0 +1,9 @@
+blog_blog_homepage:
+    path:     /
+    defaults: { _controller: BlogBlogBundle:Default:index }
+blog_blog_register:
+    path:     /register
+    defaults: { _controller: BlogBlogBundle:Default:register }
+blog_blog_login:
+    path:     /login
+    defaults: { _controller: BlogBlogBundle:Default:login }
