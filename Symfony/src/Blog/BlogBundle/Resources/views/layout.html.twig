@@ -7,6 +7,8 @@
 {% block body %}
 	<header>
 		<div class="nav">
+      {%  block nav %}
+      {% if user is empty %}
                 <nav class="nav-main">
                     <ul class="ul-nav-main">
                     	<li><a class="cta" href ="{{ path('blog_blog_homepage') }}"> Home</a>
@@ -15,7 +17,19 @@
                         </li>
                         <li><a class="cta" href="{{ path('blog_blog_login') }}">Login</a></li>
                     </ul>
-                </nav>
+        {% else %}
+                <nav class="nav-main">
+                    <ul class="ul-nav-main">
+                       <li><a class="cta" href="{{ path('blog_blog_homepage') }}">Home</a></li>
+                       <li><a class="cta" href="{{ path('blog_blog_info') }}">Info Personnel</a></li>
+                        <li><a class="cta" href="{{ path('blog_blog_admin') }}">Admin</a></li>
+                        <li><a class="cta" href="{{ path('blog_blog_logout') }}">Logout</a></li> 
+                    </ul>
+  
+          {% endif %}
+          </nav>     
+
+        {% endblock %}
             </div>
             <div class="header-logo">
                 <h1 class="main-title"> Mon blog Music </h1>
@@ -34,6 +48,7 @@
   {# On définit un nouveau bloc, que les vues du bundle pourront remplir #}
   {% block troiswaplatform_body %}
   {% endblock %}
+  
 </main>
 	<footer class="footer-main">
 		<div class="div-nav-footer">

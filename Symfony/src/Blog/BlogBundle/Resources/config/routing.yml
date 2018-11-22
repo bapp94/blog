@@ -7,3 +7,15 @@ blog_blog_register:
 blog_blog_login:
     path:     /login
     defaults: { _controller: BlogBlogBundle:Default:login }
+blog_blog_logout:
+    path:     /logout
+    defaults: { _controller: BlogBlogBundle:Default:logout }
+blog_blog_info:
+    path:     /info
+    defaults: { _controller: BlogBlogBundle:Default:info }
+blog_blog_admin:
+    path:     /admin
+    defaults: { _controller: BlogBlogBundle:Default:admin }
+blog_blog_addPost:
+    path:     /addPost
+    defaults: { _controller: BlogBlogBundle:Default:addPost }

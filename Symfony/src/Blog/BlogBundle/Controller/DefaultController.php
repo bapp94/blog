@@ -16,13 +16,15 @@ class DefaultController extends Controller
     public function indexAction()
     {
         session_start();
-        var_dump($_SESSION);   
-        return $this->render('BlogBlogBundle:Default:index.html.twig');
+     
+        return $this->render('BlogBlogBundle:Default:index.html.twig',[ 'user' => $_SESSION]);
     }
-     public function registerAction()
-    {
+     
 
-        var_dump($_POST);
+     public function registerAction()
+    {   
+        session_start();
+       
         if ( empty($_POST) == false ){
         
         $user = new Users();
@@ -32,7 +34,7 @@ class DefaultController extends Controller
         $user->setEmail($_POST['Email']);
         $user->setStatus('user');
         $password =$this->hashPassword($_POST['Password']);
-        var_dump($password);
+      
         $user->setPassword($password);
         $em = $this->getDoctrine()->getManager();
         
@@ -43,15 +45,19 @@ class DefaultController extends Controller
         return $this->redirectToRoute('blog_blog_login');
     }else{
       
-        return $this->render('BlogBlogBundle:Default:register.html.twig');
+        return $this->render('BlogBlogBundle:Default:register.html.twig', [ 'user' => $_SESSION]);
 
     }
         
 
 
     }
+   
+
     public function loginAction()
     {
+        session_start();
+        var_dump($_SESSION);
         if (empty($_POST) == false) {
             var_dump($_POST);
             $pdo = new \PDO('mysql:host=localhost;dbname=BlogMusic', 'root', 'troiswa');
@@ -72,24 +78,83 @@ class DefaultController extends Controller
             $user = $query->fetch(\PDO::FETCH_ASSOC);
             
             var_dump($user);
-
         if( $this->verifyPassword($_POST['password'], $user['Password']) && $user != false ) {
 
             $_SESSION['user']['FirstName'] = $user['FirstName'];
             $_SESSION['user']['LastName'] = $user['LastName'];
             $_SESSION['user']['Email'] = $user['Email'];
-
-             echo 'Connecté';
-            
-            var_dump($_SESSION);
-
-        }
+            $_SESSION['user']['Id'] = $user['Id'];
+            $_SESSION['user']['description'] = $user['Description'];
         }
         
-        
+        return $this->redirectToRoute('blog_blog_homepage');
 
-        return $this->render('BlogBlogBundle:Default:login.html.twig');
+        
     }
+        else{
+    
+    
+    return $this->render('BlogBlogBundle:Default:login.html.twig',[ 'user' => $_SESSION]);
+}
+}
+    public function logoutAction(){
+        session_start();
+
+        session_destroy();
+
+
+
+        return $this->redirectToRoute('blog_blog_homepage');
+    }
+
+    public function infoAction()
+    {
+        session_start();
+        $em = $this->getDoctrine()->getManager();
+      
+        if (empty($_POST) == false) {
+            $pdo = new \PDO('mysql:host=localhost;dbname=BlogMusic', 'root', 'troiswa');
+
+            $pdo->exec('SET NAMES UTF8');
+
+            $query = $pdo->prepare
+            (   
+                'UPDATE
+                    Users
+                SET
+                    `Description`=?
+
+                WHERE id = ?
+                  '
+
+            );  
+       $query->execute([$_POST['contents'],$_SESSION['user']['Id']]);
+       
+   }
+
+
+        return $this->render('BlogBlogBundle:Default:info.html.twig',[ 'user' => $_SESSION]);
+    }
+
+    public function adminAction(){
+
+        session_start();
+
+        
+         return $this->render('BlogBlogBundle:Default:admin.html.twig',[ 'user' => $_SESSION]);
+    }
+
+    public function addPostAction(){
+
+        session_start();
+
+        
+         return $this->render('BlogBlogBundle:Default:addPost.html.twig',[ 'user' => $_SESSION]);
+    }
+
+
+
+
     private function hashPassword($password)
     {
        

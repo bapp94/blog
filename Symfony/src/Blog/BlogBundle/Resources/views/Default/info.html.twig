@@ -1,0 +1,36 @@
+{% extends "Blog\BlogBundle::layout.html.twig" %}
+
+{% block page_title %}
+<div class="div-article-title" >
+	<h2 class="article-title">Votre Espace Perso</h2>
+</div>
+<div class="resume">
+	<p> Votre Nom : {{ user.user.FirstName }}</p>
+	<p>Votre Prénom : {{ user.user.LastName }}</p>
+	<p>Votre Émail : {{ user.user.Email }}</p>
+	{% if user.user.description is not null  %}
+		<p> Votre Description : {{ user.user.description }}</p>
+	{% endif %}
+</div>
+<div class="ajout">
+	<form method="Post">
+		<fieldset>
+			<legend><h3><i class="fas fa-info"></i> Personalisé vos Info</h3></legend>
+				<ul class="ul-nav-info">
+					<li>
+						<label>rajouté une description :</label>
+						<br><br>
+						<textarea class="contents" name="contents"></textarea>
+					</li>
+					<li>
+                		<button class="button button-primary" type="submit">Mettre à jour</button>
+               			 <a class="button button-cancel" href="{{ path('blog_blog_homepage') }}">Annuler</a>
+            </li>
+				</ul>
+
+		</fieldset>
+	</form>
+</div>
+
+
+{% endblock %}

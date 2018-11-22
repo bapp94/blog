@@ -1,0 +1,25 @@
+{% extends "Blog\BlogBundle::layout.html.twig" %}
+
+{% block page_title %}
+<div class="div-article-title" >
+	<h2 class="article-title"><i class="fa fa-cogs"></i> Panneau d'administration</h2>
+</div>
+<nav>
+    <a href="{{ path('blog_blog_addPost') }}">Rédiger un nouvel article</a>
+</nav>
+
+<table>
+    <caption>Liste des articles</caption>
+    <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Article</th>
+            <th>Auteur</th>
+            <th>Catégorie</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+    </tbody>
+   </table>
+{% endblock %}
