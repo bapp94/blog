@@ -22,30 +22,18 @@
   		<h2 class="article-title"> Les derniers Articles</h2>
   	</div>
   	<section class="news container">
+      {% for post in posts %}
   		<article class="item-news">
-  			<h3 class="title-item-news">un article</h3>
-  			<a href="#"><img src="{{ asset('img/1.jpg') }}"></a>
-  			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-  			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-  			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-  			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-  			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat</p>
-  			<p>ud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-  			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-  			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat</p>
+  			<h3 class="title-item-news">{{ post.title  }}</h3>
+  			<a href="
+        {{ path('blog_blog_showPost',  {'id':post.id}) }}"><img src="{{ asset('img/1.jpg') }}"></a>
+  			<p>
+          {{ post.content  | striptags | slice(0,350)}}  [...]
+  			</p>
   			
   		</article>
-  	
-  		<article class="item-news">
-  			<h3 class="title-item-news">un article</h3>
-  			<a href="#"><img src="{{ asset('img/3.jpg') }}"></a>
-  			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-  			tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-  			quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-  			consequat. Duis aute t</p>
-  			<p>ud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-  			consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-  			cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat</p>
+  	{% endfor %}
+  		
   		
   	</section>
   {% endblock %}

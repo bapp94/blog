@@ -8,6 +8,8 @@ use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Blog\BlogBundle\Entity\Users;
+use Blog\BlogBundle\Entity\Category;
+use Blog\BlogBundle\Entity\Post;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 
@@ -16,8 +18,15 @@ class DefaultController extends Controller
     public function indexAction()
     {
         session_start();
-     
-        return $this->render('BlogBlogBundle:Default:index.html.twig',[ 'user' => $_SESSION]);
+        
+        $repository = $this->getDoctrine()->getManager()->getRepository('BlogBlogBundle:Post');
+        $listPost = $repository->findAll();
+        var_dump($listPost);
+
+
+
+
+        return $this->render('BlogBlogBundle:Default:index.html.twig',[ 'user' => $_SESSION , 'posts' => $listPost]);
     }
      
 
@@ -148,11 +157,54 @@ class DefaultController extends Controller
 
         session_start();
 
+        $repository = $this->getDoctrine()->getManager()->getRepository('BlogBlogBundle:Category');
+        $listCategory = $repository->findAll();
+        var_dump($listCategory);
+
+        if(empty($_POST) == false){
+
+            var_dump($_POST);
+
+            $add = new Post();
+            $add ->setTitle($_POST['title']);
+            $add ->setContent($_POST['contents']);
+            $add ->setCategorieId($_POST['categories']);
+            $add ->setAuthorId($_SESSION['user']['Id']);
+            
+            $em = $this->getDoctrine()->getManager();
         
-         return $this->render('BlogBlogBundle:Default:addPost.html.twig',[ 'user' => $_SESSION]);
+            $em->persist($add);
+
+            $em->flush();
+            return $this->render('BlogBlogBundle:Default:addPost.html.twig',[ 'user' => $_SESSION , 'categories' => $listCategory]);
+        }
+
+        else{
+
+
+
+
+
+         return $this->render('BlogBlogBundle:Default:addPost.html.twig',[ 'user' => $_SESSION , 'categories' => $listCategory]);
+    }
     }
 
+     public function showPostAction($id){
 
+        session_start();
+
+        $repository = $this->getDoctrine()->getManager()->getRepository('BlogBlogBundle:Post');
+        
+        $posts = $repository->find($id);
+
+        dump($posts);
+
+
+
+
+
+         return $this->render('BlogBlogBundle:Default:showPost.html.twig',[ 'user' => $_SESSION, 'post'=> $posts]);
+    }
 
 
     private function hashPassword($password)

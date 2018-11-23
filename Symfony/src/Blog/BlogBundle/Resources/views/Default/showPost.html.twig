@@ -1,0 +1,13 @@
+{% extends "Blog\BlogBundle::layout.html.twig" %}
+
+{% block page_title %}
+	<div class="div-article-title" >
+    <h2 class="article-title">Article</h2>
+</div>
+<section class="post">
+        <h3><?= $ShowPost[0]['Title']?> </h3>
+        <article><?= $ShowPost[0]['Content']?> </article>
+        <small>rédigé par <?=$ShowPost[0]['FirstName']?> <?=$ShowPost[0]['LastName']?> le <?= $ShowPost[0]['CreationTimesTamp'] ?></small>
+    </section>
+
+{% endblock %}
